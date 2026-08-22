@@ -56,11 +56,13 @@ print(account1.info())
 account1.withdraw(50)
 print(account1.info())
 
-account1.transfer_to("acc2", 25)
-print(account1.info())
-
 account2 = BankAccount('Olga', 2, 200)
 print(account2.info())
+
+account1.transfer_to(account2, 25)
+print(account1.info())
+
+
 
 print(BankAccount.get_accounts_created())
 
