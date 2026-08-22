@@ -29,12 +29,13 @@ class BankAccount:
             self.balance -= amount
         return self.balance
 
-    def transfer_to(self, other_account: str|int, amount: float):
+    def transfer_to(self, other_account: BankAccount, amount: float):
         """Перевод денег на другой счет"""
         if self.balance < amount:
             raise ValueError("Сумма перевода превышает баланс")
         else:
             self.balance -= amount
+            other_account.deposit(amount)
         return self.balance
 
     def info(self):
