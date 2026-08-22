@@ -49,6 +49,8 @@ class BankAccount:
 
 account1 = BankAccount('Nikolay', 1)
 print(account1.info())
+print(BankAccount.get_accounts_created())
+print('---')
 
 account1.deposit(100)
 print(account1.info())
@@ -58,12 +60,16 @@ print(account1.info())
 
 account2 = BankAccount('Olga', 2, 200)
 print(account2.info())
+print(BankAccount.get_accounts_created())
+print('---')
 
 account1.transfer_to(account2, 25)
 print(account1.info())
-
-
-
+print(account2.info())
 print(BankAccount.get_accounts_created())
+print('---')
+
+
+
 
 #EOF
