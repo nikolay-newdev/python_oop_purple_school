@@ -16,7 +16,7 @@ class Statics(ABC):
 
 class Notifier(ABC):
     @abstractmethod
-    def notify(self, name):
+    def notify(self, name, score):
         raise NotImplementedError
 
 
@@ -34,15 +34,19 @@ class CourseAverage(Statics):
         for student in stud_list:
             for key, val in student.marks.items():      
                 if res_dict.get(key) is None:
-                    res_dict[key] = val  
+                    res_dict[key] = [val]  
                 else:
-                    res_dict[key] = (res_dict[key] + val) / 2
-        return res_dict
+                    res_dict[key].append(val)
+        final_dict = {}
+        for k, v in res_dict.items():
+            final_dict[k] = sum(v) / len(v)
+
+        return final_dict
 
 
 class ConsoleNotifier(Notifier):
-    def notify(self, name):
-        print(f'{name} - у этого ученика средний бал < 3.5:')
+    def notify(self, name, score):
+        print(f'{name} - у этого ученика средний бал: {score}, это < 3.5:')
 
 @dataclass
 class Journal:
@@ -72,7 +76,7 @@ class Monitoring:
         students = self.statistics.average(self.journal.list_student())
         for name, mark in students.items():
             if mark < 3.5:
-                self.notifier.notify(name)
+                self.notifier.notify(name, mark)
 
 
 journal = Journal()
