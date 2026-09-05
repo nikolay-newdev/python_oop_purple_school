@@ -17,7 +17,7 @@ class SlotUser:
         self.password = password
 
 list1 = [User('Alex', 'a@mail.ru', '123$') for i in range(0, 100_000)]
-mem1 = sum([sys.getsizeof(el) for el in list1])
+mem1 = sum([sys.getsizeof(el) + sys.getsizeof(el.__dict__) for el in list1])
 list2 = [SlotUser('Alex', 'a@mail.ru', '123$') for i in range(0, 100_000)]
 mem2 = sum([sys.getsizeof(el) for el in list2])
 
