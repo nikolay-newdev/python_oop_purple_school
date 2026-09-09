@@ -2,8 +2,8 @@ from dataclasses import dataclass, field
 from typing import TypeVar, Generic, Optional
 
 
-string = TypeVar('string', bound=str)
-number = TypeVar('number', bound=int)
+string = TypeVar('string')
+number = TypeVar('number')
 
 @dataclass
 class Cache(Generic[string, number]):
